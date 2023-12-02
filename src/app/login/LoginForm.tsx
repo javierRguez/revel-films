@@ -1,5 +1,5 @@
 "use client";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import Button from "../ui/button/Button";
 import styles from "./login.module.css";
 import Input from "../ui/input/Input";

@@ -55,6 +55,17 @@ export const authOptions: AuthOptions = {
   pages: {
     signIn: "/login",
   },
+  events: {
+    async signOut({ session, token }) {
+      await fetch(`${API_BASE_URL}/auth/sign-out`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token?.token}`,
+        },
+      });
+    },
+  },
 };
 
 export default NextAuth(authOptions);

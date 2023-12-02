@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "@/app/ui/globals.css";
 import AuthProvider from "@/providers/AuthProvider";
+import MoviesProvider from "@/providers/MoviesProvider";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -22,10 +23,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={roboto.className}>
         <AuthProvider>
-          <div className="app-container">
-            <main className="main-container">{children}</main>
-            {/* <Footer /> */}
-          </div>
+          <MoviesProvider>
+            <div className="app-container">
+              <main className="main-container">{children}</main>
+              {/* <Footer /> */}
+            </div>
+          </MoviesProvider>
         </AuthProvider>
       </body>
     </html>
