@@ -1,0 +1,32 @@
+.container {
+  background-color: black;
+  padding-top: 40px;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 500;
+  word-wrap: break-word;
+  margin-bottom: 1rem;
+}
+
+.list-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.list-content {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 767px) {
+  .list-content {
+    flex: 50%;
+  }
+}

@@ -24,7 +24,6 @@ export const MoviesContextProvider = (props: Props) => {
     setHighlightedMovies(highlightedMovies);
     setMoviesByGenre(moviesByGenre);
     setUserMovies(userMovies);
-    console.log("===>", { moviesByGenre, highlightedMovies, userMovies });
   }, []);
 
   const value = {

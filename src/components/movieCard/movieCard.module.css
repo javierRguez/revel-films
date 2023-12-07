@@ -1,0 +1,56 @@
+.container {
+  position: relative;
+  height: 386px;
+  min-width: 261px;
+  position: relative;
+  transition-property: background-color, border-color, color, fill, stroke,
+    opacity, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+.container:hover {
+  transform: scale(1.04);
+}
+.movie-card {
+  border-radius: 1rem;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.container:first-child {
+  margin-left: 1rem;
+}
+
+.container:last-child {
+  margin-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .container:first-child {
+    margin-left: 4%;
+  }
+
+  .container:last-child {
+    margin-right: 4%;
+  }
+}
+
+@media (min-width: 1440px) {
+  .container:first-child {
+    margin-left: 8%;
+  }
+
+  .container:last-child {
+    margin-right: 8%;
+  }
+}
+
+@media (min-width: 1660px) {
+  .container:first-child {
+    margin-left: 8%;
+  }
+
+  .container:last-child {
+    margin-right: 8%;
+  }
+}

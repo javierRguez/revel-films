@@ -1,8 +1,8 @@
 "use client";
 import { signIn } from "next-auth/react";
-import Button from "../ui/button/Button";
+import Button from "@/components/button/Button";
 import styles from "./login.module.css";
-import Input from "../ui/input/Input";
+import Input from "@/components/input/Input";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
 import Link from "next/link";
