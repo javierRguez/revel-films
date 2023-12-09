@@ -22,3 +22,8 @@
   background: #751b5c;
   opacity: 80%;
 }
+
+.button--active {
+  background-color: #751b5c; /* Cambia el color según tus necesidades */
+  color: #fff;
+}

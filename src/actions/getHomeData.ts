@@ -1,16 +1,21 @@
 "use server";
 
-import { Movie, MovieByGenre } from "@/app/types";
+import { IdValue, Movie, MovieByGenre } from "@/app/types";
 import { getGenreById, getMovies, getUserMovies } from ".";
 import dayjs from "dayjs";
 
 export async function getHomeData() {
   const movies = await getMovies();
-  const moviesByGenre = await formatMovieData(movies);
+  const { moviesByGenre, genreList, comingSoonMovies } = await formatMovieData(
+    movies
+  );
   return {
+    movies,
     moviesByGenre,
     highlightedMovies: movies.filter((movie: Movie) => movie.highlighted),
     userMovies: await getFormatUserMovies(movies),
+    genreList,
+    comingSoonMovies,
   };
 }
 
@@ -20,6 +25,7 @@ const getFormatUserMovies = async (movies: Movie[]) => {
 };
 
 const formatMovieData = async (movies: Movie[]) => {
+  const genreList: IdValue[] = [];
   const moviesByGenreAux: MovieByGenre[] = [];
   const comingSoonMovies: Movie[] = movies.filter((movie: any) =>
     dayjs("2023-01-28").isBefore(movie.availableDate)
@@ -40,13 +46,13 @@ const formatMovieData = async (movies: Movie[]) => {
     const movies: Movie[] = otherMovies.filter(
       (movie) => movie.genre === genre
     );
-    moviesByGenreAux.push({ genreTitle: name, movies });
+    genreList.push({ id: genre, value: name });
+    moviesByGenreAux.push({ genreTitle: name, genreId: genre, movies });
   }
 
-  moviesByGenreAux.push({
-    genreTitle: "Coming Soon",
-    movies: comingSoonMovies,
-  });
-
-  return moviesByGenreAux;
+  return {
+    moviesByGenre: moviesByGenreAux,
+    genreList,
+    comingSoonMovies,
+  };
 };

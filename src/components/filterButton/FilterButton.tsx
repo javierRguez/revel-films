@@ -13,8 +13,11 @@ const FilterButton: React.FC<FilterButtonProps> = ({
   onClick,
   disabled = false,
 }) => {
+  const buttonClasses = `${styles.button} ${
+    isActive ? styles["button--active"] : ""
+  }`;
   return (
-    <button onClick={onClick} disabled={disabled} className={styles.button}>
+    <button onClick={onClick} disabled={disabled} className={buttonClasses}>
       {label}
     </button>
   );

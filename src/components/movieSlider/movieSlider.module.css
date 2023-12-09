@@ -1,0 +1,98 @@
+.container {
+  position: absolute;
+  width: 100%;
+  height: inherit;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  min-height: 600px;
+}
+
+.description-container {
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  display: flex;
+  position: relative;
+  height: inherit;
+  width: 100%;
+}
+
+.title {
+  color: white;
+  font-size: 54px;
+  font-family: Roboto Condensed;
+  font-weight: 700;
+  line-height: 54px;
+  word-wrap: break-word;
+}
+
+.description {
+  color: white;
+  font-size: 24px;
+  font-family: Roboto;
+  font-weight: 400;
+  word-wrap: break-word;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  display: -webkit-box;
+}
+
+.button-container {
+  width: 200px;
+  height: 40px;
+  margin-bottom: 1rem;
+}
+
+.description-wrap {
+  margin-top: 144px;
+  max-width: 563px;
+  background-color: #2222229c;
+  border-radius: 16px;
+  padding: 10px;
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.controls-container {
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  padding-bottom: 24px;
+}
+
+.controls-wrap {
+  display: flex;
+  gap: 16px;
+  opacity: 0.7;
+}
+
+.control {
+  width: 90px;
+  height: 6px;
+  background-color: black;
+  border-radius: 8px;
+  cursor: pointer;
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
+    backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.control--active {
+  background-color: white;
+}
+
+@media (max-width: 767px) {
+  .control {
+    width: 50px;
+  }
+}

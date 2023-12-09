@@ -1,22 +1,24 @@
-import { MovieByGenre } from "@/app/types";
 import styles from "./genreFilter.module.css";
 import FilterButton from "../filterButton/FilterButton";
 import DraggableSection from "../draggableSection/DraggableSection";
+import { useMovies } from "@/hooks/useMovies";
+import { IdValue } from "@/app/types";
 
 interface GenreFilterProps {
-  movies: MovieByGenre[];
+  genreList: IdValue[];
 }
 
-const GenreFilter: React.FC<GenreFilterProps> = ({ movies }) => {
+const GenreFilter: React.FC<GenreFilterProps> = ({ genreList }) => {
+  const { filterByGenre, selectedGenreFilter } = useMovies();
   return (
     <DraggableSection>
       <div className={styles.container}>
-        {movies.map((genre) => (
-          <div key={genre.genreTitle} className={styles["button-container"]}>
+        {genreList.map((genre) => (
+          <div key={genre.id} className={styles["button-container"]}>
             <FilterButton
-              label={genre.genreTitle}
-              isActive={false}
-              onClick={() => {}}
+              label={genre.value}
+              isActive={selectedGenreFilter === genre.id}
+              onClick={() => filterByGenre(genre.id, genre.value)}
               disabled={false}
             />
           </div>

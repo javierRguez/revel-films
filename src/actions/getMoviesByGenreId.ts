@@ -16,8 +16,8 @@ export async function getMovieByGenreId(genreId: string) {
           Authorization: `Bearer ${currentUser.token}`,
         },
       });
-      const movieDetails = await res.json();
-      return movieDetails;
+      const movies = await res.json();
+      return movies;
     }
   } catch (error) {
     return null;

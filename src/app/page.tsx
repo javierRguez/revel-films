@@ -1,27 +1,42 @@
 "use client";
-import FilterButton from "@/components/filterButton/FilterButton";
 import GenreFilter from "@/components/genreFilter/GenreFilter";
 import MovieRow from "@/components/movieRow/MovieRow";
-import ResponsiveMarginContainer from "@/components/responsiveMarginContainer/ResponsiveMarginContainer";
+import MovieSlider from "@/components/movieSlider/MovieSlider";
 import { useMovies } from "@/hooks/useMovies";
+import { useEffect } from "react";
 
 export default function Home() {
-  const { loadMoviesData, moviesByGenre, userMovies } = useMovies();
+  const {
+    loadMoviesData,
+    filteredMoviesByGenre,
+    userMovies,
+    genreList,
+    commingSoonMovies,
+    highlightedMovies,
+  } = useMovies();
+
+  useEffect(() => {
+    loadMoviesData();
+  }, []);
 
   return (
     <div>
-      Home
-      <button onClick={() => loadMoviesData()}>CLICK ME</button>
-      <GenreFilter movies={moviesByGenre} />
+      <div style={{ width: "100%", height: "600px" }}>
+        <MovieSlider movies={highlightedMovies} />
+      </div>
+      <GenreFilter genreList={genreList} />
       <div>
-        {moviesByGenre &&
-          moviesByGenre.map((genre) => (
+        {filteredMoviesByGenre &&
+          filteredMoviesByGenre.map((genre) => (
             <MovieRow
               key={genre.genreTitle}
               title={genre.genreTitle}
               movies={genre.movies}
             />
           ))}
+        {commingSoonMovies.length > 0 && (
+          <MovieRow title="Coming Soon" movies={commingSoonMovies} />
+        )}
         {userMovies.length > 0 && (
           <MovieRow title="My List" movies={userMovies} />
         )}
