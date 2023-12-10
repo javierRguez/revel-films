@@ -1,9 +1,17 @@
+"use client";
 import Link from "next/link";
 import ResponsiveMarginContainer from "../responsiveMarginContainer/ResponsiveMarginContainer";
 import FooterList from "./FooterList";
 import styles from "./footer.module.css";
+import { useSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
 
 const Footer = () => {
+  const { data: session } = useSession();
+  const pathname = usePathname();
+
+  if (pathname?.includes("/login") && !session) return "";
+
   return (
     <div className={styles.container}>
       <ResponsiveMarginContainer>

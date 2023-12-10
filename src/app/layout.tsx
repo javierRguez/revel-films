@@ -4,6 +4,7 @@ import "@/components/globals.css";
 import AuthProvider from "@/providers/AuthProvider";
 import MoviesProvider from "@/providers/MoviesProvider";
 import Footer from "@/components/footer/Footer";
+import HeaderBar from "@/components/headerBar/HeaderBar";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -26,6 +27,7 @@ export default function RootLayout({
         <AuthProvider>
           <MoviesProvider>
             <div className="app-container">
+              <HeaderBar />
               <main className="main-container">{children}</main>
               <Footer />
             </div>

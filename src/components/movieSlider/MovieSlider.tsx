@@ -30,8 +30,8 @@ const MovieSlider: React.FC<MovieSliderProps> = ({ movies }) => {
     <div style={{ position: "relative", height: "inherit" }}>
       <div className={styles.container}>
         <Image
-          src={movies[movieIndex].thumbnail}
-          alt={movies[movieIndex].title}
+          src={movies[movieIndex]?.thumbnail}
+          alt={movies[movieIndex]?.title}
           width={0}
           height={0}
           sizes="100vw"
@@ -42,9 +42,9 @@ const MovieSlider: React.FC<MovieSliderProps> = ({ movies }) => {
       <div className={styles["description-container"]}>
         <ResponsiveMarginContainer>
           <div className={styles["description-wrap"]}>
-            <div className={styles.title}>{movies[movieIndex].title}</div>
+            <div className={styles.title}>{movies[movieIndex]?.title}</div>
             <div className={styles.description}>
-              {movies[movieIndex].description}
+              {movies[movieIndex]?.description}
             </div>
             <div className={styles["button-container"]}>
               <Button label="Discover" onClick={() => {}} />
