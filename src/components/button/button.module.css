@@ -1,10 +1,10 @@
 .button {
-  background: #751b5c;
   width: 100%;
+  min-width: 125px;
+  max-width: 343px;
   height: 44px;
   border-radius: 16px;
   border: none;
-  color: white;
   font-size: 16px;
   font-weight: 400;
   word-wrap: break-word;
@@ -18,10 +18,25 @@
   transition-duration: 150ms;
   transform-origin: center center;
 }
-.button:hover {
+.button--primary:hover {
   background: #8d2470;
 }
 
 .button:active {
   opacity: 80%;
+}
+
+.button--active {
+  background: #751b5c !important;
+  color: #fff !important;
+}
+
+.button--primary {
+  background: #751b5c;
+  color: white;
+}
+
+.button--secondary {
+  background: white;
+  color: black;
 }

@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext, useState } from "react";
 import { IdValue, Movie, MovieByGenre } from "@/app/types";
-import { getHomeData, getMovieByGenreId } from "@/actions";
-import { getFormatMoviesByGenre } from "@/utils/movieDataFormatter";
+import { getHomeData, getMovieByGenreId, getMovieById } from "@/actions";
+import { getFormatMoviesByGenre } from "@/utils";
 
 interface MoviesContextType {
   loadMoviesData: () => void;
@@ -13,6 +13,8 @@ interface MoviesContextType {
   genreList: IdValue[];
   selectedGenreFilter: string;
   filterByGenre: (genreId: string, genreName: string) => void;
+  getMovieDetails: (movieId: string) => void;
+  movieDetails: Movie | null;
 }
 
 export const MoviesContext = createContext<MoviesContextType | null>(null);
@@ -30,6 +32,7 @@ export const MoviesContextProvider = (props: Props) => {
   const [userMovies, setUserMovies] = useState<Movie[]>([]);
   const [genreList, setGenreList] = useState<IdValue[]>([]);
   const [selectedGenreFilter, setSelectedGenreFilter] = useState<string>("");
+  const [movieDetails, setMovieDetails] = useState<Movie | null>(null);
 
   const loadMoviesData = useCallback(async () => {
     const {
@@ -65,6 +68,11 @@ export const MoviesContextProvider = (props: Props) => {
     setFilteredMoviesByGenre(moviesAux);
   };
 
+  const getMovieDetails = async (movieId: string) => {
+    const movieDetails = await getMovieById(movieId);
+    setMovieDetails(movieDetails);
+  };
+
   const value = {
     loadMoviesData,
     highlightedMovies,
@@ -75,6 +83,8 @@ export const MoviesContextProvider = (props: Props) => {
     commingSoonMovies,
     selectedGenreFilter,
     filteredMoviesByGenre,
+    getMovieDetails,
+    movieDetails,
   };
 
   return <MoviesContext.Provider value={value} {...props} />;

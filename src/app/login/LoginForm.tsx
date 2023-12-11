@@ -61,6 +61,7 @@ const LoginForm = () => {
           required
         />
         <Button
+          color="primary"
           label={isLoading ? "Loading..." : "Sign In"}
           onClick={handleSubmit(onSubmit)}
         />

@@ -4,6 +4,7 @@ import styles from "./movieSlider.module.css";
 import ResponsiveMarginContainer from "../responsiveMarginContainer/ResponsiveMarginContainer";
 import Button from "../button/Button";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface MovieSliderProps {
   movies: Movie[];
@@ -11,6 +12,7 @@ interface MovieSliderProps {
 
 const MovieSlider: React.FC<MovieSliderProps> = ({ movies }) => {
   const [movieIndex, setMovieIndex] = useState(0);
+  const router = useRouter();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -30,12 +32,20 @@ const MovieSlider: React.FC<MovieSliderProps> = ({ movies }) => {
     <div style={{ position: "relative", height: "inherit" }}>
       <div className={styles.container}>
         <Image
+          src={movies[movieIndex]?.poster}
+          alt={movies[movieIndex]?.title}
+          width={0}
+          height={0}
+          sizes="100vw"
+          className={styles["desktop-image"]}
+        />
+        <Image
           src={movies[movieIndex]?.thumbnail}
           alt={movies[movieIndex]?.title}
           width={0}
           height={0}
           sizes="100vw"
-          className={styles.image}
+          className={styles["mobile-image"]}
         />
       </div>
 
@@ -47,7 +57,11 @@ const MovieSlider: React.FC<MovieSliderProps> = ({ movies }) => {
               {movies[movieIndex]?.description}
             </div>
             <div className={styles["button-container"]}>
-              <Button label="Discover" onClick={() => {}} />
+              <Button
+                color="primary"
+                label="Discover"
+                onClick={() => router.push(`/movies/${movies[movieIndex].id}`)}
+              />
             </div>
           </div>
         </ResponsiveMarginContainer>

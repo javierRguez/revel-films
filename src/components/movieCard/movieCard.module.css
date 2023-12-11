@@ -8,12 +8,17 @@
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
   transition-duration: 200ms;
 }
+
+.container--coming-soon {
+  height: 260px;
+  min-width: 400px;
+}
+
 .container:hover {
   transform: scale(1.04);
 }
 .movie-card {
   border-radius: 1rem;
-  object-fit: cover;
   cursor: pointer;
 }
 

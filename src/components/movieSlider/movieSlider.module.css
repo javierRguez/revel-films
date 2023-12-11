@@ -5,10 +5,24 @@
   overflow: hidden;
 }
 
-.image {
+.desktop-image {
+  display: flex;
   width: 100%;
-  height: auto;
-  min-height: 600px;
+  height: 100%;
+}
+
+.mobile-image {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+@media (max-width: 767px) {
+  .desktop-image {
+    display: none;
+  }
+  .mobile-image {
+    display: flex;
+  }
 }
 
 .description-container {
@@ -22,6 +36,7 @@
 }
 
 .title {
+  text-transform: uppercase;
   color: white;
   font-size: 54px;
   font-family: Roboto Condensed;
@@ -95,4 +110,7 @@
   .control {
     width: 50px;
   }
+}
+
+.star-icon {
 }

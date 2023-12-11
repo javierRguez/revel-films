@@ -27,6 +27,7 @@ const HeaderBar = () => {
         {showLogOut && (
           <div className={styles["button-container"]}>
             <Button
+              color="primary"
               label="Sign out"
               onClick={() => {
                 signOut();
