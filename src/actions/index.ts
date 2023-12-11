@@ -7,4 +7,3 @@ export * from "./getMovies";
 export * from "./getMoviesByGenreId";
 export * from "./getUserMovies";
 export * from "./removeMovieToUserList";
-export * from "./getHomeData";

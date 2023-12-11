@@ -12,6 +12,7 @@ const getFormatMoviesByGenre = (movies: Movie[], genreName: string) => {
 };
 
 const isComingSoon = (date: Date): boolean => {
+  //return dayjs("2023-01-28").isBefore(date);
   return dayjs().isBefore(date);
 };
 

@@ -1,43 +1,31 @@
-"use client";
+import { getMovies, getUserMovies } from "@/actions";
 import GenreFilter from "@/components/genreFilter/GenreFilter";
 import MovieRow from "@/components/movieRow/MovieRow";
 import MovieSlider from "@/components/movieSlider/MovieSlider";
-import { useMovies } from "@/hooks/useMovies";
-import { useEffect } from "react";
+import MovieList from "./MovieList";
 
-export default function Home() {
-  const {
-    loadMoviesData,
-    filteredMoviesByGenre,
-    userMovies,
-    genreList,
-    commingSoonMovies,
-    highlightedMovies,
-  } = useMovies();
-
-  useEffect(() => {
-    loadMoviesData();
-  }, []);
+export default async function Home() {
+  const result = await getMovies();
+  const userMoviesIds = await getUserMovies();
+  const userMovies = result?.movies.filter((movie) =>
+    userMoviesIds.includes(movie.id)
+  );
 
   return (
     <div>
-      <div style={{ width: "100%", height: "600px" }}>
-        <MovieSlider movies={highlightedMovies} />
+      <div className="movie-slider-container">
+        <MovieSlider movies={result?.highlightedMovies || []} />
       </div>
-      <GenreFilter genreList={genreList} />
+
       <div>
-        {filteredMoviesByGenre &&
-          filteredMoviesByGenre.map((genre) => (
-            <MovieRow
-              key={genre.genreTitle}
-              title={genre.genreTitle}
-              movies={genre.movies}
-            />
-          ))}
-        {commingSoonMovies.length > 0 && (
-          <MovieRow title="Coming Soon" movies={commingSoonMovies} />
+        <MovieList
+          list={result?.moviesByGenre || []}
+          genreList={result?.genreList || []}
+        />
+        {result?.comingSoonMovies && result?.comingSoonMovies.length > 0 && (
+          <MovieRow title="Coming Soon" movies={result?.comingSoonMovies} />
         )}
-        {userMovies.length > 0 && (
+        {userMovies && userMovies.length > 0 && (
           <MovieRow title="My List" movies={userMovies} />
         )}
       </div>

@@ -1,4 +1,9 @@
 .container {
+  position: relative;
+  height: inherit;
+}
+
+.image-container {
   position: absolute;
   width: 100%;
   height: inherit;
@@ -110,7 +115,4 @@
   .control {
     width: 50px;
   }
-}
-
-.star-icon {
 }

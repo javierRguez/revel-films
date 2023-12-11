@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "@/components/globals.css";
 import AuthProvider from "@/providers/AuthProvider";
-import MoviesProvider from "@/providers/MoviesProvider";
 import Footer from "@/components/footer/Footer";
 import HeaderBar from "@/components/headerBar/HeaderBar";
 
@@ -25,13 +24,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={roboto.className}>
         <AuthProvider>
-          <MoviesProvider>
-            <div className="app-container">
-              <HeaderBar />
-              <main className="main-container">{children}</main>
-              <Footer />
-            </div>
-          </MoviesProvider>
+          <div className="app-container">
+            <HeaderBar />
+            <main className="main-container">{children}</main>
+            <Footer />
+          </div>
         </AuthProvider>
       </body>
     </html>

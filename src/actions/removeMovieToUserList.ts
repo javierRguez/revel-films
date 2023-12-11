@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { getCurrentUser } from "./getCurrentUser";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -16,6 +17,7 @@ export async function removeMovieToUserList(movieId: string) {
           Authorization: `Bearer ${currentUser.token}`,
         },
       });
+      revalidatePath("/");
       const userMovies = await res.json();
       return userMovies;
     }

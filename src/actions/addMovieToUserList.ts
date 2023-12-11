@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { getCurrentUser } from "./getCurrentUser";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -17,6 +18,7 @@ export async function addMovieToUserList(movieId: string) {
         },
         body: JSON.stringify({ id: movieId }),
       });
+      revalidatePath("/");
       const userMovies = await res.json();
       return userMovies;
     }

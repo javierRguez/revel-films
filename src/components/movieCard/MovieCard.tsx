@@ -1,3 +1,4 @@
+"use client";
 import { Movie } from "@/app/types";
 import Image from "next/image";
 import styles from "./movieCard.module.css";
@@ -20,7 +21,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   const onMouseUp = (e: React.MouseEvent<HTMLDivElement>) => {
     if (xAxisPosition && e.clientX === xAxisPosition) {
       const formatUrl = movie.id;
-      router.push(`/movies/${formatUrl}`);
+      router.push(`/movies/${formatUrl}`, { scroll: true });
     }
   };
   return (

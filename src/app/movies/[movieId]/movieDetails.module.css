@@ -135,3 +135,7 @@
   justify-content: end;
   align-items: end;
 }
+
+.detail-container {
+  max-width: 1125px;
+}

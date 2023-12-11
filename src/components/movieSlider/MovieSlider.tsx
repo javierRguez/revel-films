@@ -1,3 +1,4 @@
+"use client";
 import { Movie } from "@/app/types";
 import Image from "next/image";
 import styles from "./movieSlider.module.css";
@@ -29,8 +30,8 @@ const MovieSlider: React.FC<MovieSliderProps> = ({ movies }) => {
   };
 
   return movies.length > 0 ? (
-    <div style={{ position: "relative", height: "inherit" }}>
-      <div className={styles.container}>
+    <div className={styles.container}>
+      <div className={styles["image-container"]}>
         <Image
           src={movies[movieIndex]?.poster}
           alt={movies[movieIndex]?.title}

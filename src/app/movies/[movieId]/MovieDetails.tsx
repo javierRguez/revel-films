@@ -6,23 +6,23 @@ import Image from "next/image";
 import StarRating from "@/components/starRating/StarRating";
 import Button from "@/components/button/Button";
 import { addMovieToUserList, removeMovieToUserList } from "@/actions";
-import { useMovies } from "@/hooks/useMovies";
 import { useState } from "react";
 
 interface MovieDetailsProps {
   movieDetails: Movie;
   genreName: string;
   isComingSoonMovie: boolean;
+  userMovies: string[];
 }
 
 const MovieDetails: React.FC<MovieDetailsProps> = ({
   movieDetails,
   genreName,
   isComingSoonMovie,
+  userMovies,
 }) => {
-  const { userMovies } = useMovies();
   const [isUserMovie, setIsUserMovie] = useState(
-    userMovies.some((movie: Movie) => movie.id === movieDetails.id)
+    userMovies?.includes(movieDetails.id)
   );
 
   const onClickAddMovie = () => {
@@ -101,8 +101,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({
           </span>
           <span className={styles["description-tag"]}>Genre: {genreName}</span>
         </div>
-
-        <div style={{ maxWidth: "1125px" }}>
+        <div className={styles["detail-container"]}>
           <h1 className={styles.title}>{movieDetails.title}</h1>
           <p className={styles.description}>{movieDetails.description}</p>
         </div>
